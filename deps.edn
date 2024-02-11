@@ -1,0 +1,33 @@
+{:paths ["src"]
+ :deps  {org.babashka/http-client {:mvn/version "0.3.11"}
+         babashka/fs {:mvn/version "0.5.20"}
+         meander/epsilon {:mvn/version "0.0.650"}
+         org.clj-commons/hickory {:mvn/version "0.7.4"}
+         org.jsoup/jsoup {:mvn/version "1.14.3"}
+         ;; taipei.404/html-to-hiccup {:mvn/version "0.1.8"}
+         tick/tick {:mvn/version "0.7.5"}
+         jarohen/chime {:mvn/version "0.3.3"}
+         camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}
+         vvvvalvalval/datalog-rules {:mvn/version "0.1.0"}
+         io.replikativ/datahike {:mvn/version "0.6.1557"}
+         ;; io.github.cozodb/cozo-clj {:mvn/version "0.7.5"}
+         }
+ :aliases
+ {:neil {:project {:name homecoming-server-status/homecoming-server-status
+                   :version "0.0.1"}}
+
+ :nrepl ;; added by neil
+ {:extra-deps {nrepl/nrepl {:mvn/version "1.1.0"}}
+  :main-opts ["-m" "nrepl.cmdline" "--interactive" "--color"]}
+
+ :test ;; added by neil
+ {:extra-paths ["test"]
+  :extra-deps {io.github.cognitect-labs/test-runner
+                {:git/tag "v0.5.0" :git/sha "b3fd0d2"}}
+  :main-opts ["-m" "cognitect.test-runner"]
+  :exec-fn cognitect.test-runner.api/test}
+
+ :build ;; added by neil
+ {:deps {io.github.clojure/tools.build {:git/tag "v0.9.6" :git/sha "8e78bcc"}
+         slipset/deps-deploy {:mvn/version "0.2.0"}}
+  :ns-default build}}}
