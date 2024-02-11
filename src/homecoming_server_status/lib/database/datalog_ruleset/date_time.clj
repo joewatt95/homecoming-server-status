@@ -21,7 +21,7 @@
   "∀ ?shard ?date_time,
       is_the_earliest_date_time(?date_time) ←
       is_the_smallest_such_that(
-        ?date_time, ?date_time', (∃ ?state, ?state ⊧ date_time(date_time'))
+        ?date_time, ?date_time', (∃ ?state, ?state ⊧ date_time(?date_time'))
       )"
   '[(is-the-earliest-date-time ?date-time)
     [(q '[:find (min ?date-time)
@@ -45,7 +45,7 @@
   "∀ ?shard ?date_time,
      is_the_earliest_date_time(?date_time) ←
      is_the_largest_such_that(
-       ?date_time, ?date_time', (∃ ?state, ?state ⊧ date_time(date_time'))
+       ?date_time, ?date_time', (∃ ?state, ?state ⊧ date_time(?date_time'))
      )"
   '[(is-the-latest-date-time ?date-time)
     [(q '[:find (max ?date-time)
