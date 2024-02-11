@@ -78,6 +78,6 @@
 
 (defn transform-http-resp [http-resp]
   (m/match http-resp
-   {:headers {"date" ?date-time} :body ?body}
+    {:headers {"date" ?date-time} :body ?body}
     {:date-time (parse-date-time-str ?date-time)
      :servers (-> ?body resp-body->data set)}))
