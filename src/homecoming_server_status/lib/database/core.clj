@@ -1,7 +1,7 @@
 (ns homecoming-server-status.lib.database.core
   (:require [datahike.api :as datahike]
             [homecoming-server-status.lib.database.database-config :as db-config]
-            [homecoming-server-status.lib.database.datalog-rules :as rules]
+            [homecoming-server-status.lib.database.datalog-ruleset.core :refer [ruleset]]
             [meander.strategy.epsilon :as r]))
 
 (def db-conn ^:private (atom nil))
@@ -26,7 +26,7 @@
                 :where
                 (is-shard-at-some-point-in-time ?shard)]
               @@db-conn
-              rules/rules))
+              ruleset))
 
 (defn test-query! []
   (datahike/q '[:find ?date-time .
@@ -34,4 +34,4 @@
                 :where
                 (is-the-latest-date-time ?date-time)]
               @@db-conn
-              rules/rules))
+              ruleset))
