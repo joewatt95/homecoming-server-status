@@ -1,7 +1,7 @@
 (ns homecoming-server-status.lib.database.datalog-ruleset.date-time
   (:require [datalog-rules.api :as rules]))
 
-(def rules
+(def ruleset
   (rules/ruleset {}))
 
 #_(rules/unirule ruleset
@@ -17,7 +17,7 @@
     (not [_ :date-time ?date-time']
          [(< ?date-time' ?date-time)])])
 
-(rules/unirule rules
+(rules/unirule ruleset
   "∀ ?shard ?date_time,
       is_the_earliest_date_time(?date_time) ←
       is_the_smallest_such_that(
@@ -28,7 +28,7 @@
           :where [_ :date-time ?date-time]]
         $) [[?date-time]]]])
 
-#_(rules/unirule rules
+#_(rules/unirule ruleset
   "∀ ?shard ?date_time,
      is_the_latest_date_time(?date_time) ←
        ∃ ?state,
@@ -41,7 +41,7 @@
     (not [_ :date-time ?date-time']
          [(> ?date-time' ?date-time)])])
 
-(rules/unirule rules
+(rules/unirule ruleset
   "∀ ?shard ?date_time,
      is_the_earliest_date_time(?date_time) ←
      is_the_largest_such_that(
@@ -52,7 +52,7 @@
           :where [_ :date-time ?date-time]]
         $) [[?date-time]]]])
 
-(rules/unirule rules
+(rules/unirule ruleset
   "∀ ?shard ?date_time,
      is_shard_as_of_date_time(?shard, ?date_time) ←
        ∃ ?server ?state,
@@ -66,7 +66,7 @@
     [?state :server ?server]
     [?server :shard-name ?shard]])
 
-(rules/unirule rules
+(rules/unirule ruleset
   "∀ ?shard,
      is_shard_at_some_point_in_time(?shard) ←
        ∃ ?date_time,

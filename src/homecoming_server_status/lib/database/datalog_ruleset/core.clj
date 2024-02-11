@@ -2,7 +2,7 @@
   (:require [datalog-rules.api :as rules]
             [homecoming-server-status.lib.database.datalog-ruleset.date-time :as date-time-rules]))
 
-(def ruleset
-  (->> [date-time-rules/rules]
+(def combined-ruleset
+  (->> [date-time-rules/ruleset]
        (eduction (mapcat rules/rules))
        (into [])))
