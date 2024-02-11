@@ -19,5 +19,8 @@
                 :task (shell "native-image"
                              "-jar" "target/homecoming-server-status-0.0.1-standalone.jar"
                              "--no-fallback"
-                             "--initialize-at-build-time"
+                             "-H:ReflectionConfigurationFiles=reflect-config.json"
+                             "--features=clj_easy.graal_build_time.InitClojureClasses"
+                             ;; https://clojurians-log.clojureverse.org/graalvm/2022-05-19
+                             "--initialize-at-build-time=org.jsoup.nodes,org.jsoup.helper"
                              "target/homecoming_server_status")}}}

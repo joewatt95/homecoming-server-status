@@ -72,7 +72,8 @@
         (time/formatter (. DateTimeFormatter -RFC_1123_DATE_TIME))]
     (-> date-time-str
         (time/parse-zoned-date-time date-time-formatter)
-        (.toInstant)
+        time/instant
+        ;; (.toInstant)
         Date/from)))
 
 (defn transform-http-resp [http-resp]
