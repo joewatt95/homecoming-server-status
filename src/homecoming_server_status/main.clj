@@ -36,6 +36,6 @@
   (->> (lib/get-server-status!)
        ;; vector
        ;; (fs/write-lines (fs/path "out.edn"))
-         database/transact!
+         database/transact-async!
          deref)
   (println (database/test-query!)))
