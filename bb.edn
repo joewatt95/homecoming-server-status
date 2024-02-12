@@ -12,7 +12,7 @@
                          *command-line-args*)}
 
   uber {:doc "Build uberjar"
-           :task (clojure "-T:build uber")}
+        :task (clojure "-T:build uber")}
 
   native-image {:doc "Builds native image"
                 :depends [uber]
