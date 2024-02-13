@@ -6,7 +6,7 @@
   (:import [java.time.format DateTimeFormatter]
            [java.util Date]))
 
-(def resp-body->shard-data
+(def resp-body->shards
   (let [str->keyword csk/->kebab-case-keyword]
     (r/pipe
      (r/rewrites
@@ -73,11 +73,10 @@
     (-> date-time-str
         (time/parse-zoned-date-time date-time-formatter)
         time/instant
-        ;; (.toInstant)
         Date/from)))
 
 (defn transform-http-resp [http-resp]
   (m/match http-resp
     {:headers {"date" ?date-time} :body ?body}
     {:date-time (parse-date-time-str ?date-time)
-     :servers (-> ?body resp-body->shard-data set)}))
+     :shards (-> ?body resp-body->shards set)}))

@@ -38,4 +38,4 @@
        ;; (fs/write-lines (fs/path "out.edn"))
          database/transact!
          deref)
-  (println (database/test-query!)))
+  (println (database/get-most-populated-shard!)))

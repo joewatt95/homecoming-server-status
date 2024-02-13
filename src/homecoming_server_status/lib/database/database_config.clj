@@ -5,7 +5,7 @@
     :db/valueType :db.type/instant
     :db/cardinality :db.cardinality/one}
 
-   {:db/ident :server
+   {:db/ident :shard
     :db/valueType :db.type/ref
     :db/cardinality :db.cardinality/many}
 

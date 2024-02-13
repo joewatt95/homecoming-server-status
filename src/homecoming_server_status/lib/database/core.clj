@@ -12,9 +12,9 @@
   (reset! db-conn (datahike/connect db-config/config)))
 
 (defn transact! [tx-data]
-  (let [rewrite-servers-key
-        (r/rewrite {:servers ?x & ?rest} {:server ?x & ?rest})
-        tx-data' (rewrite-servers-key tx-data)]
+  (let [rewrite-shards-key
+        (r/rewrite {:shards ?x & ?rest} {:shard ?x & ?rest})
+        tx-data' (rewrite-shards-key tx-data)]
     (datahike/transact! @db-conn {:tx-data [tx-data']})))
 
 (defn get-datoms! []
@@ -28,10 +28,13 @@
               @@db-conn
               combined-ruleset))
 
-(defn test-query! []
-  (datahike/q '[:find ?date-time .
-                :in $ %
+(defn get-most-populated-shard! []
+  (datahike/q '[:find ?shard-name ?num-playing ?date-time
+                :in $ % ?ruleset
                 :where
-                (is-the-latest-date-time ?date-time)]
+                (is-the-latest-date-time ?date-time)
+                (is-the-most-populated-shard-with-players-as-of ?ruleset ?shard ?num-playing ?date-time)
+                [?shard :shard-name ?shard-name]]
               @@db-conn
+              combined-ruleset
               combined-ruleset))
