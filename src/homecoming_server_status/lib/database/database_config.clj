@@ -1,41 +1,41 @@
 (ns homecoming-server-status.lib.database.database-config)
 
 (def ^:private schema
-  {:date-time {:db/valueType :db.type/instant
-               :db/cardinality :db.cardinality/one
-               :db/doc "Date-time of the world"}
+  [{:db/ident :date-time
+    :db/valueType :db.type/instant
+    :db/cardinality :db.cardinality/one}
 
-   :shard {:db/valueType :db.type/ref
-           :db/cardinality :db.cardinality/many
-           :db/doc "Entity representing a Homecoming shard"}
+   {:db/ident :shard
+    :db/valueType :db.type/ref
+    :db/cardinality :db.cardinality/many}
 
-   :shard-name {:db/valueType :db.type/keyword
-                :db/cardinality :db.cardinality/one
-                :db/doc "Name of a shard"}
+   {:db/ident :shard-name
+    :db/valueType :db.type/keyword
+    :db/cardinality :db.cardinality/one}
 
-   :status {:db/valueType :db.type/keyword
-            :db/cardinality :db.cardinality/one
-            :db/doc "Shard status"}
+   {:db/ident :status
+    :db/valueType :db.type/keyword
+    :db/cardinality :db.cardinality/one}
 
-   :playing {:db/valueType :db.type/long
-             :db/cardinality :db.cardinality/one
-             :db/doc "Number of players currently online on a shard"}
+   {:db/ident :playing
+    :db/valueType :db.type/long
+    :db/cardinality :db.cardinality/one}
 
-   :queued {:db/valueType :db.type/long
-            :db/cardinality :db.cardinality/one
-            :db/doc "Number of players waiting in queue to enter a shard"}
+   {:db/ident :queued
+    :db/valueType :db.type/long
+    :db/cardinality :db.cardinality/one}
 
-   :heroes {:db/valueType :db.type/long
-            :db/cardinality :db.cardinality/one
-            :db/doc "Number of players on blueside maps"}
+   {:db/ident :heroes
+    :db/valueType :db.type/long
+    :db/cardinality :db.cardinality/one}
 
-   :villains {:db/valueType :db.type/long
-              :db/cardinality :db.cardinality/one
-              :db/doc "Number of players on redside maps"}
+   {:db/ident :villains
+    :db/valueType :db.type/long
+    :db/cardinality :db.cardinality/one}
 
-   :maps {:db/valueType :db.type/long
-          :db/cardinality :db.cardinality/one
-          :db/doc "Number of active maps"}})
+   {:db/ident :maps
+    :db/valueType :db.type/long
+    :db/cardinality :db.cardinality/one}])
 
 (def config
   {:name "homecoming-server-status"
