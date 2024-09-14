@@ -10,7 +10,7 @@
          jimpil/chime {:mvn/version "1.0.14"}
          camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}
          vvvvalvalval/datalog-rules {:mvn/version "0.1.0"}
-         io.replikativ/datahike {:mvn/version "0.6.1573"}
+         io.replikativ/datahike {:mvn/version "0.6.1576"}
          ;; io.github.cozodb/cozo-clj {:mvn/version "0.7.5"}
          }
  :aliases
